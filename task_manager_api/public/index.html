@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A beautiful and dynamic dashboard for managing tasks.">
+    <title>Task Manager Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h2>TaskMaster</h2>
+            </div>
+            <nav>
+                <a href="#" class="nav-item active" id="nav-dashboard">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+                <a href="#" class="nav-item" id="nav-completed">
+                    <span class="icon">🎉</span> Completed Tasks
+                </a>
+            </nav>
+            <div class="sidebar-bottom">
+                <button id="btn-create-task" class="btn-primary">
+                    + New Task
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div>
+                    <h1>Welcome Back, Developer 👋</h1>
+                    <p class="subtitle">Here's what's happening with your projects today.</p>
+                </div>
+                <div style="display: flex; gap: 16px; align-items: center;">
+                    <button id="theme-toggle" style="background: var(--panel-bg); border: 1px solid var(--panel-border); color: var(--text-primary); padding: 12px; border-radius: 10px; cursor: pointer; font-size: 1.2rem; transition: all 0.3s;" title="Toggle Theme">🌙</button>
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="search-input" placeholder="Search tasks...">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Stats -->
+            <section class="stats-grid">
+                <div class="stat-card glass-panel fade-in delay-1">
+                    <div class="stat-icon total-icon">📝</div>
+                    <div class="stat-info">
+                        <h3 id="stat-total">0</h3>
+                        <p>Total Tasks</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel fade-in delay-2">
+                    <div class="stat-icon pending-icon">⏳</div>
+                    <div class="stat-info">
+                        <h3 id="stat-pending">0</h3>
+                        <p>Pending</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel fade-in delay-3">
+                    <div class="stat-icon completed-icon">🎉</div>
+                    <div class="stat-info">
+                        <h3 id="stat-completed">0</h3>
+                        <p>Completed</p>
+                    </div>
+                </div>
+                <div class="stat-card glass-panel fade-in delay-4">
+                    <div class="stat-icon high-icon">🔥</div>
+                    <div class="stat-info">
+                        <h3 id="stat-high">0</h3>
+                        <p>High Priority</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tasks Section -->
+            <section class="tasks-section glass-panel fade-in delay-5">
+                <div class="section-header">
+                    <h2>Recent Tasks</h2>
+                    <div class="filter-group">
+                        <select id="status-filter">
+                            <option value="">All Statuses</option>
+                            <option value="Pending">Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="task-list" id="task-list">
+                    <!-- Tasks injected here via JS -->
+                    <div class="loader">Loading tasks...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Creating Task -->
+    <div class="modal-overlay" id="task-modal">
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h2 id="modal-title">Create New Task</h2>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <form id="create-task-form">
+                <input type="hidden" id="task-id">
+                <div class="form-group">
+                    <label for="task-title">Title</label>
+                    <input type="text" id="task-title" required placeholder="E.g., Setup database schema">
+                </div>
+                <div class="form-group">
+                    <label for="task-desc">Description</label>
+                    <textarea id="task-desc" rows="3" placeholder="Add some details..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="task-priority">Priority</label>
+                        <select id="task-priority">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-status">Status</label>
+                        <select id="task-status">
+                            <option value="Pending" selected>Pending</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary w-100">Save Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
